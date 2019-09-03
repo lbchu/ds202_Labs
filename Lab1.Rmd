@@ -1,0 +1,147 @@
+---
+title: "Lab 1"
+subtitle: "Due: Thursday 09/05/2019 by 10 pm"
+author: "Lynna Chu"
+date: "Assigned: 09/03/2019"
+output: 
+  html_document:
+      number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This lab is more or less to help you get familiar with some of the tools we will be using in this class. Form a team of 2 to complete this lab. 
+
+You can use this RMarkDown file as a template for your work. You will need to submit your RMarkdown file and it will need to be full reproducible, i.e. the grader and I will 'knit' your submission. Make sure that you don't use any file structure that depends on your computing environment. 
+
+Instructions for submission of Lab 1 can be found at the end this document. 
+
+# Collaborating on a Repository
+
+Now you will collaborate on and make change to a partner's repo. Form a pair with your neighbor. One of you is the Owner of a repo, and the other is the Partner who collaborates on the same repo.
+
+**Step 1**: Locate the local repo you will be collaborating on and share with your partner. 
+
+1. Owner: Create an `owner_YourName.Rmd` file. Add the following information into the file: 
+    - Name? 
+    - What do you tell people about your field of study at a party? 
+    - What are the three most important tools/strategies you use for organizing your work? 
+    - Interesting fact about yourself?
+ 
+     Knit this file when finished. Make sure both files are in your repo. 
+  
+2. Owner: Push this file onto the remote repository (`git push`). Refresh the webpage on Github to see the changes. 
+
+3. Owner:  Share the url of your repo with the Partner. 
+
+4. Partner: Visit the url, and make sure you can see all the files (have read access). 
+
+5. Owner: Give the Partner push (write) access to your repo. On the webpage of the repo, click Settings -- Collaborators -- type in the Partner's username -- click Add collaborator
+
+**Step 2**: Partner: clone the remote repo, and add your changes.
+
+1. Partner: Clone the Owner's repo:
+    - In a terminal, `cd` into a directory to store the Owner's repo.
+    - Clone the Owner's repo, by the following command. The URL can be found in the the <span style="background:limegreen; color:white"> Clone or Download </span> button. 
+    ```
+    git clone https://github.com/username/repoName.git
+    ```
+        
+    - You have now a local copy of the Owner's repo.
+    - `cd` into the cloned repo.
+    
+2. Partner: Create a new Rmd file in the repo, and name it `partner_YourName.Rmd`. 
+
+3. Partner: Modify `partner_YourName.Rmd` to include the following information. Knit it when finished.
+
+   + Your (the "Partner's") full name and GitHub username. 
+   + What did the Owner do in the most recent commit? What is the commit ID?
+   + Knit the Owner's `owner_YourName.Rmd`. Are you able to do so without error? If you cannot, what errors did you encounter?
+   + Also include one tip for making Git/GitHub easier, or an error/difficulty you encountered.
+
+4. Partner: Add `partner.Rmd` and `partner.html` to the local git repo and make a new commit (you need `git add` and `git commit -m '...'`).  
+
+5. Partner: Pull updates (if any) from GitHub, and then push your changes to the remote repo (of the Owner's). 
+```
+git pull
+git push
+```
+
+**Step 3**: To finish the collaboration,
+
+1. Owner: See if your repo is updated on GitHub.
+
+2. Owner: Pull updates from GitHub to your local version, by
+```
+git pull
+```
+
+3. Owner: View the Partner's change on your local repo.
+
+You have completed a cycle of collaboration! Now the Owner and Partner switch role and repeat the previous process. 
+
+
+## Summary for Collaboration on GitHub
+1. The Owner pushes his/her local repo  to a  remote repo on GitHub, and gives the Partner access to the remote.
+2. The Partner clones (or pull from) the Owner's GitHub repo, makes local changes, commits, and then pushes the commits back.
+3. The Owner updates his/her local repo by `git pull` in order to obtain the changes made by the Partner. 
+
+# Understanding Concepts 
+
+You may work on this with your partner or individually. 
+
+  1. Explain the difference between Git and Github.
+  
+  2. Can Git and Github be used independently? Why don't we do so? Describe the advantages and disadvantages. 
+
+  3. What is a repository in Git and how can you create a repository in Git (write out the command(s))? 
+
+# Coding Exercises 
+
+  You may work on this with your partner or individually. 
+
+  1. Write code to count the total number of `NA` occurrences in the vector `X = c(47,34,33,65,37,NA,43,NA,11,NA,23,NA)`.
+
+  2. Run the following code: 
+
+   ```{r}
+   age = c(25,30,45,60,12,41)
+   smoker = c('T','F','T','F','F','F')
+   weight = c(120,137,0,168,91,142)
+   example_data = data.frame(age,smoker,weight)
+   ```
+   
+  This code took three vectors (`age`, `smoker`, and `weight`) and binded them together into an `R` object known as a 
+  `data.frame`. The advantage of `data.frame` is that it can handle vectors of different types. For example, age is a numeric 
+    vector but smoker status is a character vector (T or F). We named this `data.frame` as `example_data`. I obviously made a
+    data entry error: someone cannot have 0 weight. The correct weight should be 150 pounds. Write one line of code that can
+    easily correct this using the `[]` syntax. 
+
+
+  3. In the following I have two code snippets. Turn these code snippets into functions. Think about what each function does
+  and what you would name it. How many arguments does it need? 
+  ```{r, eval=FALSE}
+  mean(is.na(x))
+
+  x / sum(x, na.rm = TRUE)
+  ```
+  
+4. Write a function named `both_na()`. This function take two vectors of the same length and returns the number of positions that have an `NA` value in both vectors. 
+
+# Submission 
+
+Once you have finished Lab 1, at this point you should have at least 3 files in your repo: 
+`Owner_yourname.Rmd`, `Partner_yourname.Rmd`, and `Lab1.Rmd` (which should contain the solutions to Part 2 and 3).
+
+After committing all of your work (don't forget to first 'git add FILENAMES'), you should  push your work to GitHub. 
+
+Then each student (not team) should send an email titled  
+`ds202 lab1` (case-sensitive) to the grader, Yunhui Qi <qyh@iastate.edu>, before by 10 pm on Thursday Sept 5. The email should contain *only* 
+
+- Your name, student ID, github username, and GitHub repo name for Lab1, and 
+- Your partner's github username, and your partner's repo name to which you made changes. 
+
+**Note:**
+Make sure that each team member has collaborated on the other member's repo. Your homework score will be the sum of each team member's score. Help out your team member in case he/she is stuck. 
