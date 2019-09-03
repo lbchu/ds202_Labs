@@ -132,10 +132,7 @@ You may work on this with your partner or individually.
 
 # Submission 
 
-Once you have finished Lab 1, at this point you should have at least 3 files in your repo: 
-`Owner_yourname.Rmd`, `Partner_yourname.Rmd`, and `Lab1.Rmd` (which should contain the solutions to Part 2 and 3).
-
-After committing all of your work (don't forget to first 'git add FILENAMES'), you should  push your work to GitHub. 
+Once you have finished Lab 1 and after committing all of your work (don't forget to first 'git add FILENAMES'), you should  push your work to GitHub. 
 
 Then each student (not team) should send an email titled  
 `ds202 lab1` (case-sensitive) to the grader, Yunhui Qi <qyh@iastate.edu>, before by 10 pm on Thursday Sept 5. The email should contain *only* 
