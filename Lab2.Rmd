@@ -1,0 +1,146 @@
+---
+title: 'DS 202 - Lab 2: Exploring Chocolates'
+subtitle: "Due: Thursday 09/19/2019 by 10 pm"
+author: "Lynna Chu"
+date: "09/12/2019"
+output: html_document
+---
+
+
+## Outline
+  
+- Pair up and find your team member
+- Create a repository (one per team) & give access to your teammate
+- Do a data exploration (on chocolate ratings)
+- Create R markdown files that contain code to answer the questions and create the plots
+- Submit!
+
+Note: You may use this Rmarkdown file as a template or create your own. 
+
+## Background
+  
+  Brady Brelinski, Founding Member of the Manhattan Chocolate Society, obviously likes chocolate. He has assembled a database of ratings for plain dark chocolate bars: [Flavors of chocolate](http://flavorsofcacao.com/chocolate_database.html)
+
+By now, over 1900 different chocolate bars have been rated. 
+
+## Meaning of ratings
+
+Flavors of Cacao Rating System:
+  
+- 5= Elite (Transcending beyond the ordinary limits)
+- 4= Premium (Superior flavor development, character and style)
+- 3= Satisfactory (3.0) to praiseworthy (3.75) (well made with special qualities)
+- 2= Disappointing (Passable but contains at least one significant flaw)
+- 1= Unpleasant (mostly unpalatable)
+
+## Reading the data
+
+The file `choco.csv` at https://raw.githubusercontent.com/lbchu/ds202_labs/master/choco.csv is a web scrap from the chocolate flavor data base.
+
+You can load the data into your session using the command below:
+  
+  ```{r}
+choco <- read.csv("https://raw.githubusercontent.com/lbchu/ds202_labs/master/choco.csv")
+head(choco)
+```
+
+## Question set (individual)
+
+Coordinate with your teammate and decide among you who is Individual 1 and Individual 2, respectively. Each of you should create an RMarkdown file either named `individual1.Rmd` or `individual2.Rmd` to include the answers.
+
+**For each of the questions below provide at least one graphic as a basis for your answer.**
+
+1. How are ratings distributed? Don't forget to mention outliers, if there are any.
+2. Do ratings depend on the cacao percentage of a chocolate bar? 
+3. What class is the variable representing company locations? How is this different from a 'character' variable? (You do not need to produce a graphic for this question.)
+
+## Collaborating on a GitHub repository
+
+**Individual 1:** 
+
+1. Log into github, and create a repository called `ds202_lab2`
+2. Go into the settings of the repository and add your team member as a collaborator
+3. Push `individual1.Rmd` and `individual1.html` to the remote.
+
+When the above is finished, **Individual 2:**
+
+1. Open your email, and accept the invitation to the GitHub repo.
+2. Clone the remote repo of Individual 1's.
+3. Add `individual2.Rmd` and `individual2.html` to the local repo, and push to your team member's Github repo (Individual 1).
+
+## Question set (team)
+
+Discuss how to approach the following questions with your teammate. When finished, both teammate should collaborate on a single `team.Rmd` file which include the answers to the following questions. 
+
+### Tips on coordinating as a team: 
+- You can start from Invididual 1 adding, committing, and pushing `team.Rmd`, and then Individual 2 can `git pull`
+- Before you make changes to existing files or `git push`, remember to `git pull` first
+- Coorindate with your teammate to avoid merge conflict!
+- Make sure both teammates have modified `team.Rmd` file! Users who have modified this file can be viewed by issuing `git log team.Rmd` in the Terminal.
+
+
+1 \. Run the following code line by line to figure out what it's doing. Then next to each line of code, write a comment explaining its purpose and function, including the use of any specific arguments. Comments in R are proceeded by a `#`, so that R knows not to run anything after the hashtag. 
+
+For example: 
+```{r,eval=FALSE}
+plot(choco$Rating,choco$Cocoa.Pct, xlab = "Ratings", ylab = "Cocoa Percentage", pch = 2, cex=2) # creates a plot with Ratings on x-axis and Cocoa Percentage of y-axis. The symbol of points is set to be a triangle (pch=2) and the size of the points is adjusted to be larger (cex=2). 
+```
+
+If you are stuck, you can always go to R's help documentation. 
+
+
+```{r, eval=FALSE}
+recent_rating = choco[choco$Review.Date>2011,]
+
+unique(recent_rating$Company.Location) # NOTICE: how many countries are listed but how many levels are there? 
+
+recent_rating$Company.Location = droplevels(recent_rating$Company.Location)
+
+head(recent_rating)
+
+cross_table = table(recent_rating$Review.Date,recent_rating$Company.Location)
+cross_table
+
+which(cross_table[1,]!=0 & cross_table[2,]!=0 & cross_table[3,]!=0 & cross_table[4,]!=0 & cross_table[5,]!=0)
+
+france_recent = subset(recent_rating,Company.Location =='France')
+uk_recent = subset(recent_rating,Company.Location =='U.K.')
+germany_recent = subset(recent_rating,Company.Location=='Germany')
+
+par(mfrow=c(2,2))
+color1 = ifelse(france_recent$Rating >median(france_recent$Rating), 'blue', 'green')
+plot(france_recent$Cocoa.Pct ~ france_recent$Review.Date,ylim=c(50,90),col=color1,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "France") 
+legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('blue','green'),pch=18)
+
+color2 = ifelse(uk_recent$Rating >median(uk_recent$Rating), 'purple', 'red')
+plot(uk_recent$Cocoa.Pct ~ uk_recent$Review.Date,ylim=c(50,90),col=color2,pch=18,cex=1.5, xlab="Review Date", ylab= "Cocoa Percentage", main= "UK")
+legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('purple','red'),pch=18)
+
+color3 = ifelse(germany_recent$Rating > median(germany_recent$Rating), 'orange', 'yellow')
+plot(germany_recent$Cocoa.Pct ~ germany_recent$Review.Date,ylim=c(50,90),col=color3,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "Germany") 
+legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('orange','yellow'),pch=18)
+```
+
+2 \. Click Zoom on the Rstudio window (under Plots) to see the plot more clearly. How do you think the plot produced from the code above can be improved? Recommend at least one possible improvement. 
+
+3 \. How does the **number** of ratings (not the actual value of the rating) depend on the year? Use graphics to answer this question.
+
+4 \. How do ratings compare across different company locations? Focus on the three locations with the most ratings. Hint: the function `sort()` might come in handy here.
+
+5 \. Brainstorm and write down an interesting question that can be answer from the dataset. The question should not duplicate the questions above.
+
+6 \. Bonus points (optional): Answer the question from the dataset.
+
+## Submission
+
+In Canvas, **each team** submit an RMarkdown file and (just for insurance) the corresponding html. The file should include the following: 
+  
+a. the names of the team members that worked on the document.
+b. a link to the github repo you were working in, the owner's Github repo name, and his/her username. We should be able to see `individual1.Rmd`, `individual2.Rmd`,   `team.Rmd` (as well as the corresponding `.html` files) in the `ds202_lab2` repository. 
+c. code and answers (including graphics) to all of the questions.
+
+**Due date: You have time until Thursday Sept. 19, 10 pm to submit the final files. **
+
+
+
+
