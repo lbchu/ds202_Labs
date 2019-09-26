@@ -1,0 +1,83 @@
+---
+title: 'DS 202 - Lab 3: Exploring Happiness'
+subtitle: "Due: Thursday 10/03/2019 by 10 pm"
+author: "Lynna Chu"
+
+date: "09/26/2019"
+output: html_document
+---
+
+## Outline
+
+- Work in pairs, as in Lab 2
+- Create a repository (one per team) & give access to your teammate
+- Do a data exploration (on happiness)
+- Create an R markdown file that contains all code to read the data and create the plots
+- Submit!
+
+
+## Github repository
+
+- Decide on who is the owner and who is the partner. 
+- The owner should create a GitHub repository called `ds202_lab3`, and give access to the partner.
+- For a refreshment, review the procedures for collaboration for Lab 2. 
+- Collaborate on `team.Rmd` to finish all the questions. 
+
+## Format for submission
+
+- We will check whether or not your lab results are reproducible - i.e. we will knit your `team.Rmd` file. 
+- At this point, you should be pretty familar with using Rmarkdown and explored its various features. Starting from this assignment, you will also be graded on **style**. Style means is your report *clear, easy to read, and flows logically*? Is it obvious that you and your partner have spent time organizing the material in a compelling way that makes it easy (and even enjoyable) for others to read? This `team.Rmd` should be something that you would feel confident turning into a manager/supervisor as proof of your progress. 
+-  <span style="color:red">Each plot at **minimum** must have labels for both axes and a title. If you don't have these components, you will not get full credit for your answers. Each plot ideally should also come with a description. </span> 
+
+## Background
+
+The General Social Survey (GSS) has been run by NORC every other year since 1972 to keep track of current opinions across the United States. 
+
+An excerpt of the GSS data is available from my github website. 
+When you `git pull` from my github folder, the file [HAPPY.rds](HAPPY.rds) should have also downloaded. Put the file in the same folder as your working directory. You can check your working directory by typing `getwd()` in your R session. The following command is going to load the data into your R session:
+
+```{r,eval=FALSE}
+happy <- readRDS("HAPPY.rds")
+```
+
+Let's convert all the names to lowercase - it is easier to work with. Type in: 
+
+```{r,eval=FALSE}
+names(happy) = tolower(names(happy))
+```
+
+Now it's important to understand what each column stands for. You can find a codebook with explanations for each of the variables at https://gssdataexplorer.norc.org/
+
+## Part one (cleaning)
+
+Answer each of the following questions using R code to get an answer. 
+Write a separate code chunk to manipulate each variable. Once all the data manipulation is done, show the values in a barchart or histogram and comment on the plot. Use `ggplot2` to create the plots.
+
+1. Data cleaning: the values "IAP", "DK" and "NA" all encode missing values. Replace all of these instances by the value `NA`. 
+2. Check the type of the variable and cast into the right type (factor variable for categorical variables). For age, change "89 OR OLDER" to 89 and assume the variable should be numeric. (Hint: see `?as.character` and `?as.numeric`)
+3. Bring all levels of factors into a sensible order. For marital you could e.g. order the levels according to average age. 
+
+## Part two (exploration)
+
+*Happiness!*
+Use `ggplot2` to create the plots. Your exploration should make use all elements of the grammar of graphics: mappings (`color`, `fill`, and `size` at least), different `geom`s (4 at least), scales, coordinates (eg `coord_flip`), facet, and theme (eg setting axis labels and title). **The final plot doesn't need to include all these elements, but they should be part of your exploration**. For each investigation, create an appropriate visualization and write a paragraph to describe it.
+
+1. Investigate the distributions of 2 different variables. 
+2. Investigate the relationship between happiness and three other variables in the data.
+3. What do you learn from the data set? Write one or two paragraphs to describe.
+
+Explore the dataset yourself, and then discuss and refine answers as a team.
+
+## Create a report
+
+Put together everything you've done in Part 1 and 2 into a report (`team.Rmd`). This report should **all** of the questions from Part 1 and 2 and be written in a clear and concise manner. It should **not** be in question and answer format. However you need to address **every** question in order to get full points. **Include R code and graphics when appropriate.** See `Lab3_template.Rmd` for a minimal working example.   
+
+## Submission
+
+1. Push `team.Rmd` and `team.html` to the owner's git repo.
+
+2. **Submit both `team.Rmd` and `team.html` to Canvas as well**. In your submission, include: 
+    - The owner's GitHub username 
+    - The partner's GitHub username 
+    - Repo name (should be `ds202_lab3`)
+

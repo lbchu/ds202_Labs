@@ -1,0 +1,56 @@
+---
+title: 'Template - Lab 3: Exploring Happiness'
+subtitle: "Due: Thursday 10/03/2019 by 10 pm"
+author: "Lynna Chu"
+
+date: "09/26/2019"
+output: html_document
+---
+
+
+## Background
+
+The General Social Survey (GSS) has been run by NORC every other year since 1972 to keep track of current opinions across the United States. We are working with an excerpt of the dataset that covers years 1972 to 2016. The variable names along with a brief description are as follows: 
+
+| Variable      | Description   |    
+| ------------- |:-------------:| 
+| Year          | Year for this respondent | 
+| Age           | Age of respondent | 
+| Sex           | Sex of respondent     | 
+|....           | .....      | 
+
+Now it's important to understand what each column stands for. You can find a codebook with explanations for each of the variables at https://gssdataexplorer.norc.org/
+
+## Data Cleaning 
+
+Initial exploration revealed that some data processing was needed before we could proceed with further visualization. All missing values were encoded with 'NA' as follows:
+```{r}
+#insert relevant R code for Q1 here
+```
+
+In total there were `....` number of missing values for the following `....` variables. 
+
+Variables were also cast into the correct type in order to ease data visualization. This was done by:
+```{r}
+#insert relevant R code for Q2 here
+```
+
+Factors were also organized into meaningful order as follows: 
+```{r}
+#insert relevant R code for Q3 here
+```
+
+
+## Data Exploration 
+
+Two variables of interest are `...` and `...`. Their distributions are as follow: 
+```{r}
+#insert relevant R code here
+#include graphics. DESCRIBE your plot in context. Make sure it includes axis labels and appropriate title. 
+```
+
+The distribution for `...` is `....`, suggesting that `....` 
+
+
+
+
